@@ -28,7 +28,8 @@ RUN \
             unzip \
             python3-pip \
             python3-dev \
-            default-jdk
+            default-jdk \
+            bedtools
     
 ## download samtools and htslib
 WORKDIR /download 
@@ -46,20 +47,20 @@ RUN \
 WORKDIR /download/htslib-1.9
 RUN ./configure --prefix=/src/htslib && \
     make && make install && \ 
-    cp /src/htslib/bin/* /bin
+    cp /src/htslib/bin/* /usr/bin
 
 # Install samtools
 WORKDIR /download/samtools-1.9
 RUN ./configure --prefix=/src/samtools && \
     make && make install && \
-    cp /src/samtools/bin/* /bin
+    cp /src/samtools/bin/* /usr/bin
     
 # Transfer Bowtie2
 WORKDIR /download/bowtie2-2.3.4.3-linux-x86_64
-RUN cp bowtie2* /bin
+RUN cp bowtie2* /usr/bin
 
 # Transfer Python3
-WORKDIR /bin
+WORKDIR /usr/bin
 RUN ln -s /usr/bin/python3 python && \
     pip3 install --upgrade pip
     
@@ -68,14 +69,5 @@ RUN cp -r /download/FastQC /src && \
     chmod 755 /src/FastQC/fastqc && \
     ln -s /src/FastQC/fastqc fastqc
 
-#ADD root/.gitconfig /root/.gitconfig
-#ADD root/.scripts /root/.scripts
-
-# Set environment variables.
-#ENV HOME /root
-
-# Define working directory.
-#WORKDIR /root
-
-# Define default command.
-# CMD ["cat 'hello'"]
+WORKDIR /download
+RUN rm -rf ./*
