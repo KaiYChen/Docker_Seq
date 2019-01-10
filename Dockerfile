@@ -90,8 +90,9 @@ RUN git clone https://github.com/lh3/bwa.git && cd bwa && make && \
 WORKDIR /download
 RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8.zip && \
     unzip fastqc_v0.11.8.zip && \
-    chmod 755 /download/FastQC/fastqc && \
-    cp /download/FastQC/fastqc /usr/bin
+    cp -r /download/FastQC /src/FastQC && \
+    chmod 755 /src/FastQC/fastqc && \
+    ln -s /src/FastQC/fastqc /usr/bin/fastqc
 
 # Install hisat2 
 WORKDIR /download
