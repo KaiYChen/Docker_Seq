@@ -3,7 +3,7 @@ Dockerfile to create images for Bioinformatics Analysis
 
 This Docker image includes
 
-##Libraires: 
+## Libraires: 
 ### General
 * htslib
 * samtools
@@ -20,7 +20,7 @@ This Docker image includes
 * hisat2
 * STAR
 
-##Dependencies:
+## Dependencies:
 * gcc g++
 * make
 * git
