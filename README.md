@@ -3,13 +3,24 @@ Dockerfile to create images for Bioinformatics Analysis
 
 This Docker image includes
 
-Libraires: 
-* Bowtie2
-* samtools
+##Libraires: 
+### General
 * htslib
-* FasQC
+* samtools
+* fastqc
+* bcl2fastq
+* bedtools
 
-Dependencies:
+### Genomic Seq
+* bowtie2
+* GATK: https://hub.docker.com/r/broadinstitute/gatk/
+* BWA
+
+### Transcriptomic Seq
+* hisat2
+* STAR
+
+##Dependencies:
 * gcc g++
 * make
 * git
@@ -26,7 +37,4 @@ Dependencies:
 * python3-pip
 * python3-dev
 * default-jdk
-
-
-USAGE:
-docker build -t <imagename>:<tag> .
+* alien
